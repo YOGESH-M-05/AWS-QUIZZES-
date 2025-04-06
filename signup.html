@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup - AWS Quiz</title>
+  <link rel="stylesheet" href="app.css">
+  <style>
+    .auth-box {
+      max-width: 400px;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 10px;
+      background: #ffffff10;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      color: white;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 1rem 0;
+    }
+    .btn {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-box">
+    <h1>Sign Up</h1>
+    <input type="text" id="signup-username" placeholder="Enter your name" required />
+    <input type="email" id="signup-email" placeholder="Enter your email" required />
+    <button class="btn" onclick="signup()">Register</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <script>
+    function signup() {
+      const username = document.getElementById("signup-username").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+
+      if (!username || !email) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const existing = users.find(user => user.email === email);
+
+      if (existing) {
+        alert("User with this email already exists.");
+        return;
+      }
+
+      users.push({ username, email });
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("username", username);
+      localStorage.setItem("email", email);
+      alert("Signup successful!");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

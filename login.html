@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | AWS Quiz</title>
+  <link rel="stylesheet" href="app.css" />
+  <link rel="icon" type="image/jpg" href="logo.jpg" />
+</head>
+<body>
+  <div class="background-animation"></div>
+
+  <main class="container">
+    <section id="login" class="quiz-card flex-center flex-column">
+      <img src="logo.jpg" alt="AWS Logo" style="width: 100px; border-radius: 10px; box-shadow: 0 0 15px rgba(255,255,255,0.3); margin-bottom: 20px;" />
+      
+      <h1>AWS Quiz Login</h1>
+
+      <form id="login-form" class="flex-center flex-column" style="width: 100%; max-width: 300px;">
+        <input type="text" id="username" placeholder="Enter your name" required />
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button type="submit" class="btn">Login</button>
+        <p id="error-message" style="color: #ff4d4d; font-size: 0.9rem; margin-top: 10px;"></p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById("login-form");
+    const errorMsg = document.getElementById("error-message");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+
+      if (email !== "yogesh@gmail.com") {
+        errorMsg.textContent = "No user found with this email.";
+        return;
+      }
+
+      // Store credentials
+      localStorage.setItem("username", username);
+      localStorage.setItem("email", email);
+
+      // Redirect
+      window.location.href = "game.html";
+    });
+  </script>
+</body>
+</html>
