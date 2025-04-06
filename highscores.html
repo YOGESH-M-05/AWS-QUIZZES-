@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Quiz - High Scores</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="icon" type="image/jpg" href="./assets/logo.jpg">
+</head>
+<body>
+    <main class="container">
+        <section id="highscores" class="highscores-box">
+            <h1>🏆 High Scores 🏆</h1>
+            <ul id="highscore-list" class="score-list"></ul>
+            <div class="buttons">
+                <button id="clear-scores" class="btn danger-btn">🗑️ Clear Scores</button>
+                <a class="btn" href="./index.html" aria-label="Back to home">🏠 Back to Home</a>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        const highscoreList = document.getElementById('highscore-list');
+        let highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+
+        // Function to display high scores
+        function displayHighScores() {
+            if (highScores.length === 0) {
+                highscoreList.innerHTML = '<li class="no-score">No scores yet!</li>';
+                return;
+            }
+
+            highscoreList.innerHTML = highScores
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 5)
+                .map((score, index) => 
+                    `<li class="high-score">
+                        <span class="rank">#${index + 1}</span> 
+                        <span class="name">${score.name}</span> 
+                        <span class="score">${score.score}</span>
+                    </li>`
+                )
+                .join('');
+        }
+
+        // Function to clear high scores
+        document.getElementById('clear-scores')?.addEventListener('click', () => {
+            localStorage.removeItem('highScores');
+            highScores = [];
+            displayHighScores();
+        });
+
+        // Load high scores on page load
+        displayHighScores();
+    </script>
+</body>
+</html>

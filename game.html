@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>AWS Quiz - Play</title>
+    <link rel="stylesheet" href="app.css" />
+    <link rel="icon" type="image/jpg" href="./assets/logo.jpg" />
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="game.html">Play</a>
+        <a href="highscores.html">High Scores</a>
+    </nav>
+
+    <main class="container">
+        <section id="game" class="game-box">
+            <h1 id="question" class="fade-in">Loading Question...</h1>
+
+            <div class="choices">
+                <button class="choice-btn" data-number="1">Choice 1</button>
+                <button class="choice-btn" data-number="2">Choice 2</button>
+                <button class="choice-btn" data-number="3">Choice 3</button>
+                <button class="choice-btn" data-number="4">Choice 4</button>
+            </div>
+
+            <div class="game-info">
+                <p id="progress">🔥 Question <span id="question-number">1</span> of 10</p>
+                <p id="score">⭐ Score: <span id="score-value">0</span></p>
+            </div>
+
+            <button id="next-btn" class="btn" style="display: none;">➡ Next Question</button>
+        </section>
+
+        <!-- Game Over Screen -->
+        <section id="game-over" style="display: none; text-align: center;">
+            <h2>🎉 Quiz Complete!</h2>
+            <p>Your final score is: <span id="final-score">0</span></p>
+            <input type="text" id="username" placeholder="Enter your name" style="padding: 10px; margin-top: 10px;" />
+            <button id="save-score-btn" class="btn">💾 Save Score</button>
+            <br/><br/>
+            <a class="btn" href="./index.html">🏠 Home</a>
+        </section>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+</html>
